@@ -1,4 +1,4 @@
-package minimundo.controller;
+package com.minimundo.controller;
 
 public class ProdutoController {
 }
