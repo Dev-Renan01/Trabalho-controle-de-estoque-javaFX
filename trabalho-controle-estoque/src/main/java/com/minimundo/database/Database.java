@@ -1,5 +1,7 @@
 package com.minimundo.database;
 
+import com.minimundo.model.Produto;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +10,7 @@ import java.util.List;
 
         private static final String URL = "jdbc:postgresql://localhost:5432/estoque";
         private static final String USER = "postgres";
-        private static final String PASS = "1234"; // ajuste conforme seu PostgreSQL
+        private static final String PASS = "2208"; // ajuste conforme seu PostgreSQL
 
         static {
             try (Connection conn = DriverManager.getConnection(URL, USER, PASS)){
@@ -37,14 +39,14 @@ import java.util.List;
             }
         }
 
-        public static List<Product> getAllProducts() throws Exception {
-            List<Product> list = new ArrayList<>();
+        public static List<Produto> getAllProducts() throws Exception {
+            List<Produto> list = new ArrayList<>();
             String sql = "SELECT * FROM products ORDER BY id";
             try(Connection conn = DriverManager.getConnection(URL, USER, PASS);
                 Statement st = conn.createStatement();
                 ResultSet rs = st.executeQuery(sql)){
                 while(rs.next()){
-                    list.add(new Product(
+                    list.add(new Produto(
                             rs.getInt("id"),
                             rs.getString("name"),
                             rs.getInt("quantity"),
@@ -76,15 +78,15 @@ import java.util.List;
             }
         }
 
-        public static List<Product> search(String query) throws Exception{
-            List<Product> list = new ArrayList<>();
+        public static List<Produto> search(String query) throws Exception{
+            List<Produto> list = new ArrayList<>();
             String sql = "SELECT * FROM products WHERE name ILIKE ?";
             try(Connection conn = DriverManager.getConnection(URL, USER, PASS);
                 PreparedStatement ps = conn.prepareStatement(sql)){
                 ps.setString(1,"%"+query+"%");
                 ResultSet rs = ps.executeQuery();
                 while(rs.next()){
-                    list.add(new Product(
+                    list.add(new Produto(
                             rs.getInt("id"),
                             rs.getString("name"),
                             rs.getInt("quantity"),
