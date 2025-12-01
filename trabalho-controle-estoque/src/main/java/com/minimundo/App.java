@@ -1,5 +1,6 @@
 package com.minimundo;
 
+import com.minimundo.fx.ListaView;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;

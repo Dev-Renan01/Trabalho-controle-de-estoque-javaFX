@@ -8,9 +8,9 @@ import java.util.List;
 
     public class Database {
 
-        private static final String URL = "jdbc:postgresql://localhost:5432/estoque";
+        private static final String URL = "jdbc:postgresql://localhost:5432/trabalho_controle_estoque_javaFX";
         private static final String USER = "postgres";
-        private static final String PASS = "2208"; // ajuste conforme seu PostgreSQL
+        private static final String PASS = "220822";
 
         static {
             try (Connection conn = DriverManager.getConnection(URL, USER, PASS)){

@@ -3,7 +3,11 @@ package com.minimundo.fx;
 
 import com.minimundo.database.Database;
 import com.minimundo.model.Produto;
+import com.minimundo.swing.SearchDialog;
 import com.minimundo.swing.UpdateDialog;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -12,6 +16,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import java.util.List;
 
 import java.awt.*;
 
@@ -33,15 +38,15 @@ public class ListaView {
 
     private void setupTable() {
         TableColumn<Produto, String> nameCol = new TableColumn<>("Nome");
-        nameCol.setCellValueFactory(data -> javafx.beans.property.SimpleStringProperty.stringExpression(data.getValue().getName()));
+        nameCol.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getName()));
         nameCol.setMinWidth(200);
 
         TableColumn<Produto, Integer> qtyCol = new TableColumn<>("Quantidade");
-        qtyCol.setCellValueFactory(data -> javafx.beans.property.SimpleIntegerProperty.integerExpression(data.getValue().getQuantity()));
+        qtyCol.setCellValueFactory(data -> new javafx.beans.property.SimpleIntegerProperty(data.getValue().getQuantity()).asObject());
         qtyCol.setMinWidth(100);
 
         TableColumn<Produto, Double> priceCol = new TableColumn<>("Preço");
-        priceCol.setCellValueFactory(data -> javafx.beans.property.SimpleDoubleProperty.doubleExpression(data.getValue().getPrice()));
+        priceCol.setCellValueFactory(data -> new javafx.beans.property.SimpleDoubleProperty(data.getValue().getPrice()).asObject());
         priceCol.setMinWidth(100);
 
         table.getColumns().addAll(nameCol, qtyCol, priceCol);
